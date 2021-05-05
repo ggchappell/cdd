@@ -2,9 +2,12 @@
 
 ## Description
 
-`cdd` (cd to directory of ...) is a Bash command.
-After a `mv` or `cp` command, doing `cdd` takes you to the directory of
-the destination file(s).
+`cdd` (cd to directory of ...) is a Bash command. It does a `cd` to the
+last argument on the previous command line, or, if this is not a
+directory, it does a `cd` to the directory it lies in.
+
+For example, after a `mv` or `cp` command, doing `cdd` takes you to the
+directory of the destination file(s).
 
     ~/xyz$ cp file1 file2 file3 abc/def
     ~/xyz$ cdd
