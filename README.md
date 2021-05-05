@@ -4,10 +4,12 @@
 
 `cdd` (cd to directory of ...) is a Bash command. It does a `cd` to the
 last argument on the previous command line, or, if this is not a
-directory, it does a `cd` to the directory it lies in.
+directory, to the directory it lies in.
 
-For example, after a `mv` or `cp` command, doing `cdd` takes you to the
-directory of the destination file(s).
+Many \*ix shell commands take a final argument that is a destination
+file or directory. `cdd` after such a command sets the working directory
+to the directory holding the destination file(s). `cdd` is particularly
+useful after a `mv` or `cp` command.
 
     ~/xyz$ cp file1 file2 file3 abc/def
     ~/xyz$ cdd
@@ -22,22 +24,22 @@ More fully, `cdd` performs as follows.
 First, if `cdd` is given a command-line argument that is an accessible
 directory, then it does a `cd` to that directory.
 
-    ~/xyz$ cdd abc
-    ~/xyz/abc$
+    ~/xyz$ cdd images
+    ~/xyz/images$
 
 Second, if `cdd` is given a command-line argument that is not a
 directory, then it does a `cd` to the directory that the file lies in.
 
-    ~/xyz$ cdd abc/source.c
-    ~/xyz/abc$
+    ~/xyz$ cdd images/qq.jpg
+    ~/xyz/images$
 
 Third, if `cdd` is not given a command-line argument, then it obtains
 its argument by doing a history substitution on `!$`, that is, the last
 argument of the previous command.
 
-    ~/xyz$ echo "Howdy"
+    ~/xyz$ convert qq.png images/qq.jpg
     ~/xyz$ cdd
-    ~/xyz/Howdy$
+    ~/xyz/images$
 
 ## Installation
 
