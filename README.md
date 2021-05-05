@@ -38,16 +38,14 @@ argument of the previous command.
 
 ## Installation
 
-`cdd` is written as a Bash function.
-
-To make the `cdd` command available, `source` the file
+`cdd` is written as a Bash function. The source code is file
 [`cdd.sh`](cdd.sh).
-Then `cdd` can be used on the Bash command line.
 
-To make `cdd` available permanently, either `source` file `cdd.sh` in
-your `.bashrc`, or append the contents of [`cdd.sh`](cdd.sh) to your
-`.bashrc` or some file `source`d by this (for example, `.bash_aliases`,
-if you have such a file).
+To make the `cdd` command available, add the contents of file
+[`cdd.sh`](cdd.sh) to your `.bashrc`, or to some file `source`d by
+your `.bashrc` (for example, `.bash_aliases`, if you have such a file).
+`cdd` can then be used on the command line in any new interactive Bash
+shell.
 
 ## Authorship & License
 
