@@ -15,7 +15,7 @@ useful after a `mv` or `cp` command.
     ~/xyz$ cdd
     ~/xyz/abc/def$
 
-    ~/xyz$ mv file4 ~/ghi/jkl/fffff.ggg
+    ~/xyz$ mv source.c ~/ghi/jkl/main.c
     ~/xyz$ cdd
     ~/ghi/jkl$
 
