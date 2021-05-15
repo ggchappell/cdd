@@ -1,10 +1,10 @@
 # cdd
 # cd to directory of ...
-# Takes 1 argument. If history is enabled, then cdd without arguments is
-# equivalent to cdd !$ (with "!$" in double quotes as necessary).
+# Takes up to 1 argument. cdd without arguments does "cdd !$" (with the
+# result of history substitution on "!$" treated as a single word).
 #
 # By Glenn G. Chappell
-# Updated: 2021-05-03
+# Updated: 2021-05-14
 # https://github.com/ggchappell/cdd
 function cdd {
     local ARG
