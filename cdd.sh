@@ -16,7 +16,7 @@ function cdd {
         return 2
     elif (( $# == 1 )); then
         ARG="$1"
-    else  # $# == 0: set ARG to history expansion of $!, if possible
+    else  # $# == 0: set ARG to history expansion of !$, if possible
         # Check if history enabled
         if [[ $(set +o) =~ \+o\ history ]]; then
             echo >&2 -n "$FUNCNAME: History expansion failed"
