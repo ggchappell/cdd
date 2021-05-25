@@ -34,10 +34,10 @@ function cdd {
         # treatment by evaluating with ' ' prepended. Otherwise. do not
         # do this, as it prevents tilde expansion.
         if [[ "${ARG:0:1}" == '-' ]]; then
-            ARG=$(eval "echo -E ' '$ARG")
+            ARG=$(eval "unset ARG; echo -E ' '$ARG")
             ARG=${ARG:1}
         else
-            ARG=$(eval "echo -E $ARG")
+            ARG=$(eval "unset ARG; echo -E $ARG")
         fi
     fi
 
