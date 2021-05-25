@@ -33,7 +33,7 @@ function cdd {
         # Emulate Bash argument evaluation. To avoid special treatment
         # of '-': prepend ' ', evaluate, then remove the 1st character.
         # Otherwise. do not do this, as it prevents tilde expansion.
-        if [ "${ARG:0:1}" == '-' ]; then
+        if [[ "${ARG:0:1}" == '-' ]]; then
             ARG=$(eval echo -E \' \'$ARG)
             ARG=${ARG:1}
         else
