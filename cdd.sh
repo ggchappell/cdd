@@ -4,7 +4,7 @@
 # result of history substitution on "!$" treated as a single word).
 #
 # By Glenn G. Chappell
-# Updated: 2021-05-24
+# Updated: 2021-05-25
 # https://github.com/ggchappell/cdd
 function cdd {
     local ARG
@@ -13,7 +13,7 @@ function cdd {
     # substitution on !$. Store the result in variable ARG.
     if (( $# >= 2 )); then
         echo >&2 "$FUNCNAME: Too many arguments"
-        return
+        return 2
     elif (( $# == 1 )); then
         ARG="$1"
     else  # $# == 0: set ARG to history expansion of $!, if possible
@@ -21,19 +21,18 @@ function cdd {
         if [[ $(set +o) =~ \+o\ history ]]; then
             echo >&2 -n "$FUNCNAME: History expansion failed"
             echo >&2 " (history is disabled)"
-            return
+            return 1
         fi
 
         # Do history expansion. Requires history to be enabled.
         if ! ARG=$(history -p !$ 2> /dev/null); then
             echo >&2 "$FUNCNAME: History expansion failed"
-            return
+            return 1
         fi
 
-        # Emulate normal argument evaluation. To ensure that echo does
-        # not treat arguments beginning with '-' specially, prepend ' '
-        # and, after evaluation, remove the first character. For other
-        # arguments, do not do this, as it prevents tilde expansion.
+        # Emulate Bash argument evaluation. To avoid special treatment
+        # of '-': prepend ' ', evaluate, then remove the 1st character.
+        # Otherwise. do not do this, as it prevents tilde expansion.
         if [ "${ARG:0:1}" == '-' ]; then
             ARG=$(eval echo -E \' \'$ARG)
             ARG=${ARG:1}
@@ -46,7 +45,9 @@ function cdd {
     if ! cd -- "$ARG" 2> /dev/null; then
         local DIR=$(dirname -- "$ARG")
         cd -- "$DIR"
-        # Error messages from the above cd command go to stderr.
+        # For the above 'cd' command:
+        # - Error messages go to our stderr.
+        # - Its exit status is our exit status.
     fi
 }
 
