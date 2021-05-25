@@ -34,7 +34,7 @@ function cdd {
         # not treat arguments beginning with '-' specially, prepend ' '
         # and, after evaluation, remove the first character. For other
         # arguments, do not do this, as it prevents tilde expansion.
-        if [ ${ARG:0:1} == '-' ]; then
+        if [ "${ARG:0:1}" == '-' ]; then
             ARG=$(eval echo -E \' \'$ARG)
             ARG=${ARG:1}
         else
