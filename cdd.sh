@@ -4,7 +4,7 @@
 # result of history substitution on "!$" treated as a single word).
 #
 # By Glenn G. Chappell
-# Updated: 2021-05-14
+# Updated: 2021-05-24
 # https://github.com/ggchappell/cdd
 function cdd {
     local ARG
@@ -16,12 +16,19 @@ function cdd {
         return
     elif (( $# == 1 )); then
         ARG="$1"
-    elif [[ $(set +o) =~ \+o\ history ]]; then  # history disabled
-        echo >&2 "$FUNCNAME: History is disabled; argument required"
-        return
-    else
+    else  # $# == 0: set ARG to history expansion of $!, if possible
+        # Check if history enabled
+        if [[ $(set +o) =~ \+o\ history ]]; then
+            echo >&2 -n "$FUNCNAME: History expansion failed"
+            echo >&2 " (history is disabled)"
+            return
+        fi
+
         # Do history expansion. Requires history to be enabled.
-        ARG=$(history -p !$)
+        if ! ARG=$(history -p !$ 2> /dev/null); then
+            echo >&2 "$FUNCNAME: History expansion failed"
+            return
+        fi
 
         # Emulate normal argument evaluation. To ensure that echo does
         # not treat arguments beginning with '-' specially, prepend ' '
