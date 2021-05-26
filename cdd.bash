@@ -30,9 +30,9 @@ function cdd {
             return 1
         fi
 
-        # Evaluate $ARG. If its value begins with '-', then avoid
-        # special treatment by evaluating with ' ' prepended. Otherwise,
-        # do not do this, as it prevents tilde expansion.
+        # Evaluate $ARG. If it begins with '-', then avoid special
+        # treatment by evaluating with ' ' prepended. Otherwise, do not
+        # do this, as it prevents tilde expansion.
         if [[ "${ARG:0:1}" == '-' ]]; then
             ARG=$(eval "unset ARG; echo -E ' '$ARG")
             ARG=${ARG:1}
