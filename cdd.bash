@@ -7,7 +7,7 @@
 # Updated: 2021-05-28
 # https://github.com/ggchappell/cdd
 function cdd {
-    # Get last argument of previous command
+    # Get last argument of previous command.
     local ARG="$_"
 
     # If there is a single command-line argument, then replace the value
