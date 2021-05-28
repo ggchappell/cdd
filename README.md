@@ -34,8 +34,7 @@ directory, then it does a `cd` to the directory that the file lies in.
     ~/xyz/images$
 
 Third, if `cdd` is not given a command-line argument, then it obtains
-its argument by doing a history substitution on `!$`, that is, the last
-argument of the previous command.
+its argument from the last argument of the previous command.
 
     ~/xyz$ convert qq.png images/qq.jpg
     ~/xyz$ cdd
