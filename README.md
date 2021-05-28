@@ -1,6 +1,6 @@
 # cdd
 
-Bash command. `cdd` = cd to directory of ....
+A Bash command. `cdd` = cd to directory of ....
 
 ## Usage
 
