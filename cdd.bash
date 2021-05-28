@@ -39,11 +39,11 @@ function cdd {
         else
             ARG=$(eval "unset ARG; echo -E $ARG")
         fi
-        # Above: 'eval' is evil, of course. However, here we only do
-        # command-line-style evaluation of a command-line argument.
-        # Access to local variables (via an argument containing '$') is
-        # a concern, but the only accessible variables are those defined
-        # by the shell (e.g., $1). So the above 'eval' is acceptable.
+        # Above, we use 'eval', which can be problematic. However,
+        # first, here we only evaluate an argument given on the command
+        # line. Second, while access to local variables (via an argument
+        # containing '$') is a concern, the only accessible local
+        # variables are those defined by the shell (e.g., $1).
     fi
 
     # cd to $ARG, or, if this fails, to the result of 'dirname $ARG'.
