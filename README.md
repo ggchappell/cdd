@@ -1,15 +1,15 @@
 # cdd
 
-## Description
+Bash command. `cdd` = cd to directory of ....
 
-`cdd` (cd to directory of ...) is a Bash command. It does a `cd` to the
-last argument on the previous command line, or, if this is not a
-directory, to the directory it lies in.
+## Usage
 
 Many \*ix shell commands take a final argument that is a destination
-file or directory. `cdd` after such a command sets the working directory
-to the directory holding the destination file(s). `cdd` is particularly
-useful after a `mv` or `cp` command.
+directory or file. `cdd` after such a command sets the working directory
+to the destination directory or the directory holding the destination
+file(s), as appropriate.
+
+`cdd` is particularly useful after a `mv` or `cp` command.
 
     ~/xyz$ cp file1 file2 file3 abc/def
     ~/xyz$ cdd
@@ -28,7 +28,8 @@ directory, then it does a `cd` to that directory.
     ~/xyz/images$
 
 Second, if `cdd` is given a command-line argument that is not a
-directory, then it does a `cd` to the directory that the file lies in.
+directory but is a file, then it does a `cd` to the directory that the
+file lies in.
 
     ~/xyz$ cdd images/qq.jpg
     ~/xyz/images$
