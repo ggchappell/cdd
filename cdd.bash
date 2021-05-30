@@ -4,7 +4,7 @@
 # the last argument of the previous command.
 #
 # By Glenn G. Chappell
-# Updated: 2021-05-28
+# Updated: 2021-05-30
 # https://github.com/ggchappell/cdd
 function cdd {
     # Get last argument of previous command.
@@ -17,6 +17,11 @@ function cdd {
         return 2
     elif (( $# == 1 )); then
         ARG="$1"
+    fi
+
+    # Avoid go-to-previous-dir behavior of 'cd -' by prepending './'.
+    if [[ ${ARG:0:1} == '-' ]]; then
+        ARG="./$ARG"
     fi
 
     # cd to $ARG, or, if this fails, to the result of 'dirname $ARG'.
